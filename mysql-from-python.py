@@ -11,13 +11,9 @@ connection = pymysql.connect(host='localhost',
                              password='',
                              db='Chinook')
 try:
-    #Run a query
+    # Run a query
     with connection.cursor() as cursor:
-        rows = [(23, 'bob'),
-                (24, 'jim'),
-                (25, 'fred')]
-        cursor.executemany("UPDATE Friends SET age = %s WHERE name = %s;",
-                           rows)
+        rows = cursor.execute("DELETE FROM Friends  WHERE name = 'Bob';")
         connection.commit()
 finally:
     connection.close()
